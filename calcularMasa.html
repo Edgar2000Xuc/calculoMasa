@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calcular Masa Muscular</title>
+</head>
+<body>
+  <h1>Calcular masa muscular</h1>
+  
+  <form id="formulario" onsubmit="calcularIMC(event)">
+    <label for="peso">Peso (en kg):</label>
+    <input type="number" id="peso" required>
+    <br>
+    
+    <label for="altura">Altura (en metros):</label>
+    <input type="number" id="altura" required step="0.01">
+    <br>
+    
+    <button type="submit">Calcular</button>
+  </form>
+  
+  <div id="resultado"></div>
+
+  <script>
+    function calcularIMC(event) {
+      event.preventDefault();
+
+      //  valores del formulario
+      var peso = parseInt(document.getElementById("peso").value);
+      var altura = parseInt(document.getElementById("altura").value);
+
+      //  validaciones
+      var errores = [];
+
+      if (peso <= 0) {
+       console.log("El peso debe ser mayor a cero.");
+      }
+
+      if (altura <= 0) {
+        console.log("La altura debe ser mayor a cero.");
+      }
+
+      // Calcular el IMC
+      var imc = 0;
+
+      if (errores.length === 0) {
+        imc = peso / (altura ** 2);
+        imc = imc.toFixed(2);
+        peso = imc * (altura ** 2);
+        peso = peso.toFixed(2);
+      }
+
+      // Mostrar el resultado
+      var resultadoDiv = document.getElementById("resultado");
+      resultadoDiv.innerHTML = "";
+    }
+  </script>
+</body>
+</html>
